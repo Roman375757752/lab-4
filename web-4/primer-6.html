@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма подписки</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Кнопка открытия формы */
+        .open-button {
+            background-color: #2196F3;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+        }
+
+        /* Затемнение фона при открытии формы */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 8;
+        }
+
+        /* Всплывающая форма */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 10%;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+            background-color: white;
+            width: 320px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .form-container {
+            max-width: 100%;
+            text-align: left;
+        }
+
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f1f1f1;
+        }
+
+        .form-container input[type="text"]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .form-container .btn {
+            background-color: #1976D2;
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .form-container .cancel {
+            background-color: #448AFF;
+        }
+
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
+        }
+    </style>
+
+    <script>
+        function openForm() {
+            let form = document.getElementById("myForm");
+            let overlay = document.getElementById("overlay");
+
+            form.style.display = "block";
+            overlay.style.display = "block";
+
+            setTimeout(() => {
+                form.style.opacity = "1";
+                form.style.transform = "translateY(0)";
+            }, 10);
+        }
+
+        function closeForm() {
+            let form = document.getElementById("myForm");
+            let overlay = document.getElementById("overlay");
+
+            form.style.opacity = "0";
+            form.style.transform = "translateY(20px)";
+
+            setTimeout(() => {
+                form.style.display = "none";
+                overlay.style.display = "none";
+            }, 300);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault(); // предотвращаем перезагрузку страницы
+            alert("Вы успешно подписались!");
+            closeForm();
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Веб-страница</h1>
+    <button class="open-button" onclick="openForm()">Подпишитесь</button>
+
+    <!-- Затемнение фона -->
+    <div id="overlay" onclick="closeForm()"></div>
+
+    <!-- Всплывающая форма -->
+    <div class="form-popup" id="myForm">
+        <form class="form-container" onsubmit="handleSubmit(event)">
+            <h1>Подписаться</h1>
+
+            <label for="name"><b>Имя</b></label>
+            <input type="text" placeholder="Ваше имя" name="name" required>
+            
+            <label for="email"><b>eMail</b></label>
+            <input type="text" placeholder="Ваш е-мейл" name="email" required>
+
+            <button type="submit" class="btn">Отправить</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Закрыть</button>
+        </form>
+    </div>
+
+</body>
+</html>

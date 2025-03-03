@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма регистрации</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .password-container {
+            display: flex;
+            align-items: center;
+        }
+        .checkmark {
+            margin-left: 10px;
+            font-size: 20px;
+            color: green;
+            display: none; /* Скрыта по умолчанию */
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Регистрация</h2>
+        <form id="registrationForm">
+            <label for="login">Логин:</label>
+            <input type="text" id="login" required>
+
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" required>
+
+            <label for="confirmPassword">Повторите пароль:</label>
+            <div class="password-container">
+                <input type="password" id="confirmPassword" required oninput="checkPassword()">
+                <span class="checkmark" id="checkmark">&#10004;</span>
+            </div>
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+
+    <script>
+        function checkPassword() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            let checkmark = document.getElementById("checkmark");
+
+            if (password && confirmPassword && password === confirmPassword) {
+                checkmark.style.display = "inline"; // Показываем галочку
+            } else {
+                checkmark.style.display = "none"; // Скрываем галочку
+            }
+        }
+    </script>
+</body>
+</html>

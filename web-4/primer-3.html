@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка возраста</title>
+    <script>
+        function CheckAge(age) {
+            var num = parseInt(age); // Преобразуем введенное значение в число
+
+            if (isNaN(num) || num < 18) {  
+                document.getElementById('control').innerHTML = ""; // Очищаем индикатор
+                return ""; // Возвращаем пустую строку, если возраст меньше 18
+            } else {
+                document.getElementById('control').innerHTML = "<img src='01.png' width='20'/>";
+                return num;
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Форма проверки возраста</h1>
+
+    <form name="Test">
+        <table>
+            <tr>
+                <td><b>Фамилия:</b></td>
+                <td><input name="Family" size="20" onblur="this.value=this.value.toUpperCase()"></td>
+            </tr>
+            <tr>
+                <td><b>Имя:</b></td>
+                <td><input name="Name" size="20" onblur="this.value=this.value.toUpperCase()"></td>
+            </tr>
+            <tr>
+                <td><b>Возраст:</b></td>
+                <td>
+                    <input name="Age" size="3" value="" 
+                           onblur="this.value=CheckAge(this.value)" 
+                           onfocus="this.select()">
+                </td>
+                <td>
+                    <div id="control"></div> <!-- Здесь появляется иконка при вводе возраста -->
+                </td>
+            </tr>
+            <tr>
+                <td><b>Телефон:</b></td>
+                <td><input name="Phone" size="10"></td>
+            </tr>
+        </table>
+        
+        <br>
+        <input type="button" name="bt" value="Щелкни здесь!">
+    </form>
+
+</body>
+</html>

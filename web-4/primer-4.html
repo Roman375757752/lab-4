@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <script>
+        function Complete() {
+            var login = document.Form5.Id.value.trim();
+            var pass = document.Form5.Passw.value;
+            var passConfirm = document.Form5.Passw1.value;
+            var messageBox = document.getElementById("message");
+
+            if (login === "" || pass === "" || passConfirm === "") {
+                messageBox.innerHTML = "<span style='color: red;'>Ошибка: все поля должны быть заполнены!</span>";
+                return;
+            }
+
+            if (pass !== passConfirm) {
+                messageBox.innerHTML = "<span style='color: red;'>Ошибка: пароли не совпадают. Попробуйте еще раз.</span>";
+            } else {
+                messageBox.innerHTML = "<span style='color: green;'>Регистрация успешна!<br>Логин: <b>" + login + "</b></span>";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Регистрация</h1>
+
+    <form name="Form5">
+        <table>
+            <tr>
+                <td><b>Логин:</b></td>
+                <td>
+                    <input name="Id" size="20" onblur="this.value=this.value.toUpperCase()">
+                </td>
+            </tr>
+            <tr>
+                <td><b>Пароль:</b></td>
+                <td>
+                    <input type="password" name="Passw" size="20" onfocus="this.select();">
+                </td>
+            </tr>
+            <tr>
+                <td><b>Проверка пароля:</b></td>
+                <td>
+                    <input type="password" name="Passw1" size="20" onfocus="this.select();">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="button" value="Готово" onclick="Complete();">
+        <input type="reset" value="Сброс">
+    </form>
+
+    <br>
+    <div id="message"></div> <!-- Здесь будет отображаться результат -->
+    
+</body>
+</html>

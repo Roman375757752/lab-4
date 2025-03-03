@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма с кнопкой и полями ввода</title>
+    <script>
+        function btnClick() {
+            var Txt1 = document.Test.bt.value;
+            var Txt2 = document.Test.bt.name;
+            document.getElementById('ex1').innerHTML = "<hr>" +
+                "Вы нажали кнопку: " + Txt1.bold() +
+                " с именем: " + Txt2.bold() + "<hr>";
+        }
+
+        function toUpperCaseField(field) {
+            field.value = field.value.toUpperCase();
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Пример работы с формой</h1>
+
+    <div id="ex1"></div>
+
+    <form name="Test">
+        <label for="surname">Фамилия:</label>
+        <input type="text" name="surname" id="surname" onblur="toUpperCaseField(this);"><br><br>
+
+        <label for="name">Имя:</label>
+        <input type="text" name="name" id="name" onblur="toUpperCaseField(this);"><br><br>
+
+        <input type="button" name="bt" value="Щелкни здесь!" onclick="btnClick();">
+    </form>
+
+</body>
+</html>

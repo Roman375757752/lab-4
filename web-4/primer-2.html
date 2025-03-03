@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета</title>
+    <script>
+        function Complete() {
+            var Elem = "Фамилия: " + document.Sel1.Family.value +
+                "\nИмя: " + document.Sel1.Name.value +
+                "\nВозраст: " + document.Sel1.Age.value +
+                "\nТелефон: " + document.Sel1.Phone.value;
+            alert(Elem);
+        }
+
+        function CheckAge(age) {
+            var num = parseInt(age); // Преобразуем в число
+            if (isNaN(num) || num < 18) {
+                return "18"; // Если меньше 18 или не число, ставим 18
+            } else {
+                return num;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Заполните анкету</h1>
+    
+    <form name="Sel1">
+        <table>
+            <tr>
+                <td><b>Фамилия:</b></td>
+                <td><input name="Family" size="20" onblur="this.value=this.value.toUpperCase()"></td>
+            </tr>
+            <tr>
+                <td><b>Имя:</b></td>
+                <td><input name="Name" size="20" onblur="this.value=this.value.toUpperCase()"></td>
+            </tr>
+            <tr>
+                <td><b>Возраст:</b></td>
+                <td>
+                    <input name="Age" size="3" value="18" 
+                           onblur="this.value=CheckAge(this.value)" 
+                           onfocus="this.select()">
+                </td>
+            </tr>
+            <tr>
+                <td><b>Телефон:</b></td>
+                <td><input name="Phone" size="10"></td>
+            </tr>
+        </table>
+        <br>
+        <input type="button" value="Готово" onclick="Complete();">
+        <input type="reset" value="Сброс">
+    </form>
+</body>
+</html>
